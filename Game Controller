@@ -40,6 +40,8 @@ public class GameController : MonoBehaviour
                 SceneManager.LoadScene("Space Shooter");
             }
         }
+        if (Input.GetKey("escape"))
+     Application.Quit();
     }
 
     IEnumerator SpawnWaves()
