@@ -16,16 +16,21 @@ public class GameController : MonoBehaviour
     public Text ScoreText;
     public Text RestartText;
     public Text gameOverText;
+    public Text winText;
 
     private bool gameOver;
     private bool Restart;
+    private bool Win;
     private int score;
 
     void Start()
     {
         gameOver = false;
-        Restart = false;
-        RestartText.text = "";
+        restart = false;
+        Win = false;
+        restartText.text = "";
+        gameOverText.text = "";
+        winText.text = "";
         score = 0;
         UpdateScore();
         StartCoroutine(SpawnWaves());
@@ -35,7 +40,7 @@ public class GameController : MonoBehaviour
     {
        if(Restart)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.P))
             {
                 SceneManager.LoadScene("Space Shooter");
             }
@@ -60,7 +65,7 @@ public class GameController : MonoBehaviour
 
             if (gameOver)
             {
-                RestartText.text = "press 'R' for restart";
+                RestartText.text = "press 'P' for restart";
                 Restart = true;
                 break;
             }
@@ -75,7 +80,13 @@ public class GameController : MonoBehaviour
 
     void UpdateScore()
     {
-        ScoreText.text = "Score: " + score;
+        scoreText.text = "Points: " + score;
+        if (score >= 100)
+        {
+            winText.text = "You win! Game Created by Elijah Newton";
+            gameOver = true;
+            restart = true;
+        }
     }
     public void GameOver()
     {
