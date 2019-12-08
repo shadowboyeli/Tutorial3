@@ -38,7 +38,19 @@ public class PlayerController : MonoBehaviour
             musicSource.clip = musicClipOne;
             musicSource.Play();
         }
-         
+        
+          void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "PowerUp")
+        {
+            speed = 20;
+        }
+
+        if (other.tag == "PowerDown")
+        {
+            speed = 5;
+        }
+    }
     }
     void FixedUpdate()
     {
